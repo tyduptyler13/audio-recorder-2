@@ -56,7 +56,9 @@
         const headers = rawPrompts[0].map(header => header.toLowerCase()); // first row, to lower case names
         const prompts = rawPrompts.slice(1).map(row => { // For every row (skipping the first row)
           // Stuff every row into an object containing the rows with their header rows so they can be accessed by name
-          const ret = {};
+          const ret = {
+            data: null // The storage for the audio data
+          };
           for (let i = 0; i < headers.length; ++i) {
             ret[headers[i]] = row[i];
           }
