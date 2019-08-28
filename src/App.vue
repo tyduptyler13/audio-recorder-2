@@ -6,7 +6,7 @@
         <span class="font-weight-light">The web edition</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-fab-transition>
+      <v-fab-transition v-if="canSave">
         <v-btn fab
                absolute
                bottom
@@ -115,14 +115,20 @@
         });
 
         zip.file("content.csv", "filename,phrase\r\n" +
-          content.map(phrase => {
-            return `"${phrase.filename}","${phrase.phrase}"`
-          }).join("\r\n") + "\r\n"
+            content.map(phrase => {
+              return `"${phrase.filename}","${phrase.phrase}"`
+            }).join("\r\n") + "\r\n"
         );
 
         zip.generateAsync({type: "blob"}).then(zip => {
           saveAs(zip, "phrases.zip");
           this.saving = false;
+        });
+      },
+
+      canSave() {
+        return this.prompts !== null && this.prompts.length > 0 && this.prompts.some(prompt => {
+          return prompt.data !== null && prompt.data !== undefined
         });
       }
     }
