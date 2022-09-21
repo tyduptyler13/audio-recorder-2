@@ -13,7 +13,7 @@
     "file-saver": "^2.0.2",
     "jszip": "^3.2.2",
     "vue": "^2.6.10",
-    "vuetify": "^2.0.0",
+    "vuetify": "^2.6.10",
     "wavesurfer.js": "^3.0.0"
   },
   "devDependencies": {
